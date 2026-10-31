@@ -1,0 +1,13 @@
+-- PostgreSQL target schema for production migration. Apply only after reviewing district/state retention rules.
+CREATE TABLE IF NOT EXISTS schools (id TEXT PRIMARY KEY, name TEXT NOT NULL, block TEXT, district TEXT NOT NULL, state TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, password TEXT NOT NULL, role TEXT NOT NULL CHECK(role IN ('teacher','block_officer','state_admin','admin')), school_id TEXT REFERENCES schools(id), district TEXT);
+CREATE TABLE IF NOT EXISTS learners (id TEXT PRIMARY KEY, name TEXT NOT NULL, grade SMALLINT NOT NULL CHECK(grade BETWEEN 1 AND 8), school_id TEXT NOT NULL REFERENCES schools(id), gender TEXT, attendance NUMERIC(5,2) CHECK(attendance BETWEEN 0 AND 100), reading_level TEXT, numeracy_level TEXT, reading_score NUMERIC(5,2) CHECK(reading_score BETWEEN 0 AND 100), numeracy_score NUMERIC(5,2) CHECK(numeracy_score BETWEEN 0 AND 100), updated_at TIMESTAMPTZ DEFAULT now());
+CREATE TABLE IF NOT EXISTS assessments (id BIGSERIAL PRIMARY KEY, learner_id TEXT NOT NULL REFERENCES learners(id), domain TEXT NOT NULL CHECK(domain IN ('reading','numeracy')), score NUMERIC(5,2) NOT NULL CHECK(score BETWEEN 0 AND 100), level TEXT, source TEXT, assessed_on DATE NOT NULL, assessor TEXT);
+CREATE TABLE IF NOT EXISTS interventions (id BIGSERIAL PRIMARY KEY, learner_id TEXT NOT NULL REFERENCES learners(id), domain TEXT NOT NULL, gap TEXT NOT NULL, recommendation TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'Planned', due_date DATE, teacher_id TEXT, notes TEXT, created_at TIMESTAMPTZ DEFAULT now(), completed_at TIMESTAMPTZ);
+CREATE TABLE IF NOT EXISTS reassessments (id BIGSERIAL PRIMARY KEY, learner_id TEXT NOT NULL REFERENCES learners(id), domain TEXT NOT NULL, score NUMERIC(5,2) NOT NULL, assessed_on DATE NOT NULL, intervention_id BIGINT REFERENCES interventions(id), assessor TEXT, notes TEXT);
+CREATE TABLE IF NOT EXISTS audit_logs (id BIGSERIAL PRIMARY KEY, user_id TEXT, action TEXT NOT NULL, entity TEXT, entity_id TEXT, details TEXT, created_at TIMESTAMPTZ DEFAULT now());
+CREATE TABLE IF NOT EXISTS imports (id BIGSERIAL PRIMARY KEY, filename TEXT, rows_added INTEGER, source TEXT, imported_by TEXT, created_at TIMESTAMPTZ DEFAULT now());
+CREATE TABLE IF NOT EXISTS sync_events (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, event_type TEXT NOT NULL, payload JSONB NOT NULL, synced_at TIMESTAMPTZ DEFAULT now());
+CREATE INDEX IF NOT EXISTS idx_learners_school_grade ON learners(school_id, grade);
+CREATE INDEX IF NOT EXISTS idx_assessments_learner_date ON assessments(learner_id, assessed_on DESC);
+CREATE INDEX IF NOT EXISTS idx_interventions_status_due ON interventions(status, due_date);

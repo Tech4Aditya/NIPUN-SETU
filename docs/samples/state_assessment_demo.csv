@@ -1,0 +1,4 @@
+learner_id,school_udise_code,grade,assessment_date,domain,competency_code,score,attendance_pct,source_system,source_record_id
+DEMO-001-01,09100403001,1,2026-11-01,reading,FLN-RD-WORD-01,72,88,SYNTHETIC_IMPORT_DEMO,synthetic-row-0001
+DEMO-001-02,09100403001,2,2026-11-01,numeracy,FLN-NU-ADD-01,68,91,SYNTHETIC_IMPORT_DEMO,synthetic-row-0002
+DEMO-001-03,09100403001,3,2026-11-01,reading,FLN-RD-COMP-01,64,79,SYNTHETIC_IMPORT_DEMO,synthetic-row-0003
