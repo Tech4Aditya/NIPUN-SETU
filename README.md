@@ -1,172 +1,644 @@
-# NIPUNSetu 3.3 — FLN Decision-Support Platform
+# NIPUNSetu 🇮🇳
 
-A hackathon prototype for the Theme 2 problem: turning existing school records into teacher actions and administrative feedback.
+### Foundational Learning Intelligence & Policy Decision-Support Platform
 
-## Run locally (Windows PowerShell)
+**Turning India's school data into actionable learning interventions.**
+
+NIPUNSetu is an education intelligence platform designed to bridge the gap between India's existing school data ecosystem and actual foundational learning outcomes.
+
+Built around the objectives of **NEP 2020** and the **NIPUN Bharat Mission**, the platform transforms school-level assessment data into actionable insights for teachers, block administrators and state education authorities.
+
+Instead of treating attendance and assessment records as compliance requirements, NIPUNSetu turns them into a continuous cycle of learning diagnosis, targeted remediation, reassessment and policy feedback.
+
+> **Evidence → Intelligence → Intervention → Reassessment → Policy Feedback**
+
+---
+
+## 🎯 The Problem
+
+India has achieved near-universal school enrolment, but foundational literacy and numeracy remain significant challenges.
+
+Despite the availability of large-scale education datasets through UDISE+, ASER, PARAKH and state assessment systems, important gaps remain:
+
+* Assessment data is fragmented across different platforms.
+* Learning gaps are not always translated into classroom-level interventions.
+* Teachers lack accessible tools for identifying specific competency weaknesses.
+* Administrative dashboards often prioritise reporting over actionable decisions.
+* There is limited integration between learner progress and resource allocation.
+
+**NIPUNSetu addresses the implementation gap between collecting educational data and improving actual learning outcomes.**
+
+---
+
+## 💡 Our Solution
+
+NIPUNSetu provides a unified decision-support layer that connects educational data with classroom and administrative workflows.
+
+The platform enables:
+
+1. Standardised ingestion of school and assessment data.
+2. Competency-level foundational learning diagnostics.
+3. Explainable early-warning and learning-risk analytics.
+4. Teacher-oriented remediation recommendations.
+5. Longitudinal learner progress tracking.
+6. School, block and district-level intelligence.
+7. Public benchmark comparisons using published ASER and PARAKH evidence.
+8. Data governance, provenance and auditability.
+
+---
+
+## ✨ Key Features
+
+### 1. District Intelligence Dashboard
+
+* Foundational literacy and numeracy indicators.
+* Reading and numeracy performance.
+* Attendance monitoring.
+* School-level learning summaries.
+* Administrative performance insights.
+
+### 2. Learner Intelligence
+
+* Learner directory and search.
+* Grade and school filtering.
+* Individual learning profiles.
+* Reading and numeracy gap identification.
+* Learner-level assessment history.
+* Risk categorisation.
+
+### 3. FLN Diagnostic Engine
+
+Identifies foundational learning weaknesses across reading and numeracy.
+
+The diagnostic workflow maps assessment observations to specific competency gaps and recommends targeted classroom activities.
+
+### 4. Intervention Management
+
+A structured intervention workflow:
+
+* Identify struggling learners.
+* Recommend remediation activities.
+* Assign interventions.
+* Track intervention status.
+* Record reassessment results.
+* Monitor subsequent learning progress.
+
+### 5. School & Block Intelligence
+
+Provides administrative visibility across the education delivery network.
+
+* School-wise performance.
+* Block-level aggregation.
+* Attendance and learning indicators.
+* Administrative prioritisation.
+* Comparative performance summaries.
+
+### 6. Explainable Risk Analytics
+
+An early-warning engine designed to identify learners requiring additional attention.
+
+The current heuristic uses weighted indicators:
+
+* Reading gap: 35%
+* Numeracy gap: 35%
+* Attendance gap: 30%
+
+The platform also includes an experimental machine-learning validation pipeline.
+
+**Important:** The heuristic is not a clinically or educationally validated predictive model. ML performance must be established using authorised longitudinal assessment data and independent holdout evaluation.
+
+### 7. Public Education Benchmarks
+
+Connects local education intelligence with published national evidence.
+
+Supported evidence sources:
+
+| Source            | Application                                    |
+| ----------------- | ---------------------------------------------- |
+| ASER              | Foundational reading and arithmetic benchmarks |
+| PARAKH            | National competency-level assessment evidence  |
+| UDISE+            | School master and institutional information    |
+| DIKSHA            | Teaching and learning resource discovery       |
+| State assessments | Local competency-level observations            |
+
+Includes:
+
+* Public benchmark dashboards.
+* Historical learning trends.
+* Benchmark metadata.
+* Source attribution.
+* Local-to-public comparison.
+* Measurement comparability checks.
+
+### 8. Teaching Resource Discovery
+
+Competency-oriented teaching activities for foundational literacy and numeracy.
+
+Resources include:
+
+* Reading fluency.
+* Phonemic awareness.
+* Vocabulary development.
+* Reading comprehension.
+* Number recognition.
+* Addition and subtraction.
+* Multiplication and division.
+* Pattern recognition.
+
+Includes curated discovery links to DIKSHA.
+
+### 9. Data Exchange & Governance
+
+Designed to support interoperability between different educational data systems.
+
+Features include:
+
+* CSV-based data ingestion.
+* School master imports.
+* Pseudonymous learner onboarding.
+* Assessment imports.
+* Canonical data mapping.
+* Duplicate detection.
+* Row-level validation.
+* Data provenance.
+* Import history.
+* Approval-reference requirements.
+
+### 10. Multilingual & Offline Capabilities
+
+* English/Hindi interface support.
+* Progressive Web App foundations.
+* Service worker caching.
+* Offline event queue foundations.
+* Synchronisation workflow foundations.
+
+Full conflict-safe offline data synchronisation remains a deployment-level requirement.
+
+---
+
+## 🏗️ System Architecture
+
+```text
+                DATA SOURCES
+                      |
+       +--------------+--------------+
+       |              |              |
+     UDISE+          ASER          PARAKH
+       |              |              |
+       +--------------+--------------+
+                      |
+              STATE ASSESSMENTS
+                      |
+                      v
+              DATA INGESTION
+                      |
+                      v
+              VALIDATION ENGINE
+                      |
+                      v
+             CANONICAL DATA MODEL
+                      |
+          +-----------+-----------+
+          |           |           |
+          v           v           v
+      LEARNER      SCHOOL      BENCHMARK
+      RECORDS      RECORDS     REFERENCES
+          |           |           |
+          +-----------+-----------+
+                      |
+                      v
+             ANALYTICS ENGINE
+                      |
+          +-----------+-----------+
+          |           |           |
+          v           v           v
+       FLN GAP      RISK       PROGRESS
+       DETECTION   ANALYTICS   TRACKING
+          |           |           |
+          +-----------+-----------+
+                      |
+                      v
+             RECOMMENDATION ENGINE
+                      |
+                      v
+             TEACHER INTERVENTIONS
+                      |
+                      v
+                 REASSESSMENT
+                      |
+                      v
+             ADMINISTRATIVE FEEDBACK
+                      |
+          +-----------+-----------+
+          |           |           |
+          v           v           v
+       TEACHER      BLOCK       STATE
+      DASHBOARD   DASHBOARD   DASHBOARD
+```
+
+---
+
+## 🧠 Machine Learning Pipeline
+
+NIPUNSetu includes an experimental learning-risk prediction pipeline.
+
+### Pipeline
+
+```text
+Assessment History
+        |
+        v
+Data Quality Validation
+        |
+        v
+Longitudinal Pair Generation
+        |
+        v
+Feature Engineering
+        |
+        v
+School / Temporal Holdout
+        |
+        v
+Logistic Regression
+        |
+        v
+Independent Evaluation
+        |
+        v
+Model Performance Report
+```
+
+### Evaluation Metrics
+
+The validation framework supports:
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* ROC-AUC
+* Brier Score
+* Confusion Matrix
+* Majority-class baseline comparison
+
+The objective is to determine whether historical learning observations can help identify learners at risk of future learning stagnation.
+
+**Model integrity:** Synthetic demonstration records must not be presented as evidence of real-world predictive performance. Validation on authorised, independently held-out school data is required before operational use.
+
+---
+
+## 🔄 End-to-End Workflow
+
+Consider a learner struggling with basic subtraction.
+
+**Step 1 — Identification**
+
+The diagnostic engine identifies a numeracy competency gap.
+
+**Step 2 — Analysis**
+
+The platform examines available assessment and attendance information.
+
+**Step 3 — Recommendation**
+
+The system recommends targeted activities involving number lines, counters and guided subtraction exercises.
+
+**Step 4 — Intervention**
+
+The teacher assigns and records the intervention.
+
+**Step 5 — Reassessment**
+
+The teacher conducts another assessment and records the updated score.
+
+**Step 6 — Progress Monitoring**
+
+NIPUNSetu compares the learner's previous and latest assessment observations.
+
+**Step 7 — Administrative Feedback**
+
+Aggregated learning gaps help block and district administrators identify schools requiring additional academic support.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer                | Technology                    |
+| -------------------- | ----------------------------- |
+| Frontend             | HTML5, CSS3, JavaScript       |
+| Backend              | Python, FastAPI               |
+| API                  | REST API, OpenAPI             |
+| Validation           | Pydantic                      |
+| Database             | SQLite runtime                |
+| Data Processing      | Python, Pandas                |
+| Machine Learning     | Scikit-learn                  |
+| Authentication       | JWT-based authentication      |
+| Data Exchange        | CSV, JSON                     |
+| Offline Foundations  | Service Workers, LocalStorage |
+| Resource Integration | DIKSHA discovery links        |
+| Development          | VS Code, Git, GitHub          |
+
+---
+
+## 📂 Project Structure
+
+```text
+NIPUNSetu-Product/
+│
+├── backend/
+│   ├── app/
+│   │   ├── API modules
+│   │   ├── authentication
+│   │   ├── analytics
+│   │   ├── data processing
+│   │   └── application services
+│   │
+│   ├── data/
+│   ├── requirements.txt
+│   └── run.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+│
+├── scripts/
+│   └── smoke-test.py
+│
+├── docs/
+│   ├── data governance
+│   ├── ML validation
+│   ├── data integration
+│   └── architecture documentation
+│
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+
+* Python 3.10+
+* pip
+* Git
+* Visual Studio Code (recommended)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Tech4Aditya/NIPUNSetu.git
+
+cd NIPUNSetu
+```
+
+Replace the repository URL if the project is hosted under a different GitHub repository.
+
+### 2. Create a virtual environment
+
+**Windows PowerShell**
 
 ```powershell
 python -m venv .venv
+
 .venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
 pip install -r backend/requirements.txt
-$env:NIPUNSETU_SECRET = "replace-with-a-long-random-secret"
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file based on the provided `.env.example`, if available.
+
+Configure a persistent, randomly generated JWT secret before running the application.
+
+Never commit production secrets or real learner information.
+
+### 5. Start the backend
+
+From the project root:
+
+```bash
 python backend/run.py
 ```
 
-In a second terminal, from the project root:
+Backend:
 
-```powershell
+```text
+http://localhost:8000
+```
+
+Interactive API documentation:
+
+```text
+http://localhost:8000/docs
+```
+
+### 6. Start the frontend
+
+Open another terminal:
+
+```bash
 python -m http.server 8080 --directory frontend
 ```
 
-Open http://localhost:8080. API docs: http://localhost:8000/docs. Health: http://localhost:8000/api/health.
+Open:
 
-## Demo accounts
-
-| Role | Email | Password | Scope |
-|---|---|---|---|
-| Teacher | teacher@demo.in | teacher123 | Assigned school only |
-| Block officer | block@demo.in | block123 | Gautam Buddha Nagar demo district |
-| State admin | state@demo.in | state123 | Demo state view |
-| Admin | admin@demo.in | admin123 | Prototype-wide access |
-
-**Important:** The teacher role intentionally sees one assigned school in learner, school and map views. Sign out and use `block@demo.in` to inspect the multi-school / multi-block network. This is role-scoped access, not missing seed data.
-
-## What is included
-
-- 30 school records across the four Gautam Buddha Nagar education blocks represented in the public directory: Visrakh, Dadri, Dankaur and Jewar.
-- 6 named government schools with UDISE identifiers taken from a public directory that attributes records to UDISE+; other 24 schools are explicitly synthetic demo schools.
-- 440 synthetic learner records, 1,600 synthetic assessment observations and generated interventions. Learner scores, attendance, names and intervention history are not real school records.
-- Learner search, grade/risk filters, reassessment, intervention tracking, block-level aggregation, CSV import/export, audit trail and role-based access.
-- 61 competency-aligned activity plans. These are curated/teacher-use activity plans with a link to the official DIKSHA FLN discovery page; they are not claimed to be 60 live DIKSHA catalogue items.
-- Provenance-aware assessment observation store and authorised state-assessment CSV adapter with row-level validation, duplicate protection and import audit batches.
-- Competency-level longitudinal progress analytics and intervention-linked reassessment summaries.
-- Baseline-to-future learning-gain logistic regression with school-held-out evaluation, Brier score and majority-class baseline comparison. Synthetic results are engineering checks, not real-world validation.
-
-## ML validation honesty
-
-`GET /api/analytics/ml-validation` trains a small binary logistic regression using reading, numeracy, attendance and grade features. The synthetic target is defined as `reading < 50 OR numeracy < 45 OR attendance < 75`; it uses a deterministic 80/20 holdout split and reports accuracy, precision, recall, F1 and a confusion matrix. Because the target is generated from the same input features, the metrics validate the software pipeline only. They are **not evidence of real-world predictive validity**. Before real deployment, define an outcome label from a future assessment window, split by school/time to prevent leakage, evaluate calibration and subgroup error, and obtain independent authorised validation. Human review is mandatory.
-
-## Data provenance and limitations
-
-- Named public school records and UDISE identifiers: public school directory referencing UDISE+ records: https://in.knowyourschools.com/directory/uttar-pradesh/gautam-buddha-nagar
-- District block labels: same public directory. Validate against the latest authorised UDISE+ school master before production.
-- Learning records, attendance, baseline/midline scores, intervention records and all learner names: synthetic demonstration data.
-- No live UDISE+, ASER, PARAKH or DIKSHA API connection is implemented. ASER/PARAKH aggregates are not converted into individual learner records.
-- DIKSHA FLN reference: https://diksha.gov.in/fln.html. Resource links are discovery links; availability and language must be verified by teachers.
-- SQLite is used for local demo runtime. PostgreSQL schema migration remains a separate deployment step.
-
-## Key APIs
-
-- `GET /api/health`
-- `POST /api/auth/login`
-- `GET /api/dashboard`
-- `GET /api/learners?grade=&risk=` (empty grade is valid)
-- `GET /api/schools`
-- `GET /api/maps/administrative`
-- `GET /api/analytics/predictions`
-- `GET /api/analytics/ml-validation` (school-held-out future-gain evaluation)
-- `GET /api/analytics/competency-outcomes`
-- `GET /api/analytics/intervention-effectiveness`
-- `GET /api/import/template`
-- `POST /api/import/state-assessment`
-- `GET /api/import/batches`
-- `GET /api/analytics/cohorts`
-- `GET /api/analytics/impact`
-- `GET /api/resources?domain=&language=&grade=`
-- `POST /api/reassessments`
-
-## Security note
-
-Demo credentials and local SQLite are for hackathon demonstration only. Use a managed identity provider, secrets manager, TLS, encrypted managed database, consent/purpose controls, retention policies, security review and authorised data-sharing agreements before any real learner data is processed.
-
-
-## v3.3 assessment ingestion and model validation
-
-See `docs/data-import-and-ml-validation.md` for the CSV contract, validation design, limitations and new endpoints. A synthetic sample import is available at `docs/samples/state_assessment_demo.csv`. Only upload real records when an authorised data-sharing basis exists.
-
-## v3.3.1 hotfix
-
-Fixed the Risk Analytics frontend crash: the page requested five analytics endpoints but only destructured four results from `Promise.all`, leaving `effectiveness` undefined when rendering intervention-linked reassessment outcomes. The request/result mapping now includes all five responses. FastAPI validation errors are also rendered as readable messages instead of `[object Object]`.
-
-### Quick verification
-
-After starting the backend, open `http://localhost:8000/docs`. The Risk Analytics view uses these endpoints:
-
-- `/api/analytics/predictions`
-- `/api/analytics/impact`
-- `/api/analytics/cohorts`
-- `/api/analytics/ml-validation`
-- `/api/analytics/competency-outcomes`
-- `/api/analytics/intervention-effectiveness`
-
-The last endpoint may correctly return an empty `items` array until intervention-linked reassessments exist. An empty result is not an API failure.
-
-## Real-data onboarding and longitudinal validation (v3.4)
-
-- Import school directory metadata from the Data Exchange workspace using an 11-digit UDISE+ code.
-- Import a pseudonymous learner roster with an approval/reference ID. Learners are created as **Not assessed** until valid assessment observations arrive; they are not assigned fake zero scores.
-- Import repeated state assessment observations using the canonical competency-level CSV and a data-sharing approval/reference ID.
-- Use **Check readiness** in Data Exchange or `GET /api/validation/readiness` to inspect coverage, provenance labels, number of schools and assessment dates.
-- Risk Analytics uses a strict prospective validation protocol: train on earlier outcomes from non-held-out schools and test only on later outcomes from held-out schools. If sample size or class balance is inadequate, it reports `insufficient_*` rather than weakening the split.
-
-The approval-reference field is an auditable workflow gate, not proof of lawful access. Verify the actual agreement with the data controller. PARAKH and ASER public outputs are aggregate/survey sources and must never be reverse-engineered into individual learner records. See `docs/real-data-validation-playbook.md` before importing any real data.
-
-
-## v3.4 authorised data onboarding + leakage-aware validation
-
-See `docs/real-data-validation-playbook.md`. Added school master CSV upsert, minimal pseudonymous roster import with approval-reference gate, assessment import approval-reference gate, source-batch provenance tracking, validation readiness endpoint, and a dual holdout model evaluation (future outcomes from unseen schools only). The model excludes synthetic/legacy batches and returns insufficient-data statuses instead of weakening validation. This workflow does not itself grant data access or prove that an approval reference is valid.
-
-## v3.5 — Public evidence layer
-
-A new **Public benchmarks** workspace now separates published public evidence from school/learner records.
-
-### Included source-attributed data
-
-- ASER 2024 rural India indicators with 2018/2022/2024 trend points for Std III reading/subtraction and Std V reading/division, plus the published Uttar Pradesh Std III government-school reading estimate.
-- PARAKH Rashtriya Sarvekshan 2024 Grade 3 national competency percentages (language and mathematics) and survey coverage facts (children, schools, districts, teacher/school-leader respondents).
-- Official source registry and data-boundary notes for ASER, PARAKH, UDISE+ and DIKSHA.
-- Public aggregate CSV template and validated aggregate import endpoint.
-
-### New endpoints
-
-- `GET /api/public-data/overview`
-- `GET /api/public-data/template`
-- `POST /api/public-data/import-aggregate`
-
-The aggregate importer accepts only official HTTPS source URLs from ASER Centre, PARAKH/NCERT, UDISE+ or data.gov.in. It preserves geography, year, grade, indicator, unit, definition and source-page provenance. It writes to `public_benchmarks` and never creates learner records.
-
-### Run and verify
-
-```powershell
-.venv\\Scripts\\activate
-pip install -r backend/requirements.txt
-python backend/run.py
+```text
+http://localhost:8080
 ```
 
-Second terminal:
+---
 
-```powershell
-python -m http.server 8080 --directory frontend
-```
+## 🔐 Demo Authentication
 
-Open `http://localhost:8080`, sign in as `block@demo.in` / `block123`, then select **Public benchmarks**.
+The demonstration environment provides role-based accounts.
 
-Download the aggregate template, populate published state/district values with the exact source page/table, and upload. The API reports inserted, duplicate and rejected rows.
+| Role                | Email                                     | Password   |
+| ------------------- | ----------------------------------------- | ---------- |
+| Teacher             | [teacher@demo.in](mailto:teacher@demo.in) | teacher123 |
+| Block Officer       | [block@demo.in](mailto:block@demo.in)     | block123   |
+| State Administrator | [state@demo.in](mailto:state@demo.in)     | state123   |
+| Admin               | [admin@demo.in](mailto:admin@demo.in)     | admin123   |
 
-### Critical interpretation rules
+These credentials are for local demonstration only.
 
-- ASER is a rural household survey. Its aggregates are not school-census values.
-- PARAKH is a sampled assessment. Its aggregates are not a complete learner roster.
-- ASER task-level percentages and PARAKH percent-correct competency scores are different measures and must not be merged into a common score without a linking study.
-- UDISE+ school metadata is not FLN outcome data.
-- No private API access, government credentials, or learner-level data have been fabricated. State/district reports can be added through the aggregate adapter; protected data requires the relevant access approval.
+Replace demo authentication with managed identity and secure credential provisioning before deployment.
 
-See `docs/public-data-benchmarking.md` and `docs/samples/public_benchmarks_seed.csv` for source lineage.
+---
 
-## v3.6 — Comparability-aware benchmark engine
+## 📡 API Overview
 
-The Public Benchmarks workspace now includes a school/grade/domain comparison panel. It shows local learner aggregates separately from public ASER/PARAKH references and labels seeded public figures as **context only** where the underlying measure, population, mode or sampling design is not aligned.
+The backend exposes REST endpoints for the platform's core workflows.
 
-For protocol-aligned comparisons, administrators can import two CSVs: an authorised local school observation and a published reference row. A direct descriptive difference is generated only when grade, domain, indicator, unit, population, assessment mode, instrument and sampling design match exactly. The imports require provenance/source references and are audit logged. This is not a causal impact estimate or a substitute for survey-weighted statistical analysis.
+| Endpoint                                    | Purpose                      |
+| ------------------------------------------- | ---------------------------- |
+| `/api/dashboard`                            | Dashboard intelligence       |
+| `/api/learners`                             | Learner directory            |
+| `/api/interventions`                        | Intervention management      |
+| `/api/maps/administrative`                  | Administrative intelligence  |
+| `/api/analytics/predictions`                | Learning-risk analytics      |
+| `/api/analytics/ml-validation`              | ML validation results        |
+| `/api/analytics/competency-outcomes`        | Competency analytics         |
+| `/api/analytics/intervention-effectiveness` | Intervention outcomes        |
+| `/api/public-data/overview`                 | Public benchmark information |
+| `/api/comparison/overview`                  | Local-to-public comparisons  |
+| `/api/resources`                            | Teaching resource discovery  |
+| `/api/governance`                           | Data governance information  |
 
-See `docs/benchmark-comparison-methodology.md` for the methodology and CSV/API contracts.
+Explore the complete interactive API documentation at `/docs`.
+
+---
+
+## 📊 Data Strategy & Governance
+
+NIPUNSetu follows a source-aware data architecture.
+
+### Data classification
+
+**1. Public Aggregate Data**
+
+Published national and state-level education statistics.
+
+Examples:
+
+* ASER reports.
+* PARAKH reports.
+* Published education indicators.
+
+**2. Institutional Data**
+
+School-level information obtained from authorised sources.
+
+Examples:
+
+* UDISE+ school master exports.
+* School infrastructure indicators.
+* Institutional attendance summaries.
+
+**3. Learner-Level Data**
+
+Individual assessment and intervention observations.
+
+Requires:
+
+* Appropriate institutional authorisation.
+* Data minimisation.
+* Pseudonymous learner identifiers.
+* Role-based access.
+* Auditability.
+* Secure storage and transmission.
+
+### Comparability safeguards
+
+Different assessments do not automatically measure the same thing.
+
+Before calculating direct benchmark differences, NIPUNSetu checks relevant metadata such as:
+
+* Grade.
+* Learning domain.
+* Competency.
+* Assessment instrument.
+* Measurement unit.
+* Target population.
+* Sampling methodology.
+
+When measurements are not comparable, the platform presents them as contextual evidence rather than manufacturing a numerical comparison.
+
+---
+
+## ⚠️ Current Implementation Boundaries
+
+NIPUNSetu is a working prototype and integration framework, not an officially deployed government system.
+
+| Component                    | Current status                |
+| ---------------------------- | ----------------------------- |
+| Frontend dashboards          | Implemented                   |
+| FastAPI backend              | Implemented                   |
+| JWT authentication           | Implemented for demonstration |
+| FLN diagnostics              | Implemented                   |
+| Intervention workflow        | Implemented                   |
+| Synthetic demonstration data | Included                      |
+| Public benchmark references  | Included                      |
+| CSV data ingestion           | Implemented                   |
+| ML validation framework      | Experimental                  |
+| UDISE+ live integration      | Not connected                 |
+| PARAKH live API              | Not connected                 |
+| ASER microdata access        | Requires authorised access    |
+| DIKSHA live API integration  | Not connected                 |
+| PostgreSQL runtime migration | Not yet completed             |
+| Production deployment        | Not yet completed             |
+
+All synthetic records must be distinguished from actual government statistics and authorised institutional data.
+
+---
+
+## 🎯 Alignment with National Education Policy
+
+NIPUNSetu supports the implementation objectives of:
+
+* **National Education Policy 2020:** Emphasis on foundational literacy and numeracy.
+* **NIPUN Bharat Mission:** Foundational learning targets and competency development.
+* **UDISE+:** Institutional education data.
+* **PARAKH:** Assessment and learning-outcome monitoring.
+* **ASER:** Independent evidence on foundational learning.
+* **DIKSHA:** Digital teaching and learning resources.
+
+The platform is designed to complement these initiatives, not replace their existing systems.
+
+---
+
+## 🔮 Future Roadmap
+
+| Priority | Planned development                               |
+| -------- | ------------------------------------------------- |
+| P0       | PostgreSQL runtime integration                    |
+| P0       | Production authentication and identity management |
+| P0       | Secure, conflict-safe offline synchronisation     |
+| P0       | Authorised state assessment integration           |
+| P1       | Validated predictive learning analytics           |
+| P1       | Multilingual classroom recommendations            |
+| P1       | DIKSHA resource integration                       |
+| P1       | Geographic school intelligence                    |
+| P2       | District-level resource allocation optimisation   |
+| P2       | Intervention effectiveness evaluation             |
+| P2       | Scalable multi-state deployment                   |
+
+---
+
+## 👥 Built For
+
+**IIT Bombay Hackathon — Theme 2: Foundational Learning Outcomes**
+
+The project explores how existing education data infrastructure can be transformed into an actionable decision-support system for India's foundational learning ecosystem.
+
+### Core Philosophy
+
+> Data should not end in a report. It should reach the classroom, guide an intervention, and help establish whether a learner has actually improved.
+
+---
+
+## 👨‍💻 Team & Project
+
+**Project:** NIPUNSetu
+**Domain:** GovTech · EdTech · Data Intelligence · Machine Learning
+**Focus:** Foundational Literacy & Numeracy
+
+---
+
+## 📜 Disclaimer
+
+NIPUNSetu is an independent prototype developed for research, demonstration and hackathon purposes.
+
+It is not affiliated with, endorsed by, or operated by the Ministry of Education, Government of India, NCERT, ASER Centre or any state education department.
+
+Government datasets and published statistics remain the property of their respective owners and are subject to their respective terms of use.
+
+No synthetic demonstration result should be interpreted as an official educational statistic or validated real-world intervention outcome.
